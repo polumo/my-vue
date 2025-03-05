@@ -1,0 +1,15 @@
+{
+  "name": "@vue/reactivity",
+  "verson": "1.0.0",
+  "module": "dist/reactivity.esm-bundler.js",
+  "buildOptions": {
+    "name": "VueReactivity",
+    "formats": [
+      "esm-bundler",
+      "cjs"
+    ]
+  },
+  "dependencies": {
+    "@vue/shared": "workspace:*"
+  }
+}

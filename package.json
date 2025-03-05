@@ -1,0 +1,18 @@
+{
+  "name": "my-vue",
+  "type": "module",
+  "private": true,
+  "workspace": ["packages/*"],
+  "scripts": {
+    "dev": "bun scripts/dev.js reactivity -f esm"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest",
+    "esbuild": "^0.25.0",
+    "minimist": "^1.2.8"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
