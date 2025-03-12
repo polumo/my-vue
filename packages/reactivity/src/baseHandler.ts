@@ -1,4 +1,4 @@
-import { track } from './reactiveEffect'
+import { track, trigger } from './reactiveEffect'
 
 export enum ReactiveFlags {
   IS_REACTIVE = '__v_isReactive',
@@ -21,10 +21,16 @@ export const mutableHandlers: ProxyHandler<any> = {
     return Reflect.get(target, key, receiver)
   },
   set(target, key, value, receiver) {
-    // TODO: 触发更新
     // 修改值时,根据映射关系找到对应的 effect 使其重新执行
+    const oldValue = target[key]
 
-    Reflect.set(target, key, value, receiver)
-    return true
+    const result = Reflect.set(target, key, value, receiver)
+
+    // 如果新旧值不同则触发更新
+    if (oldValue !== value) {
+      trigger(target, key, value, oldValue)
+    }
+
+    return result
   },
 }
